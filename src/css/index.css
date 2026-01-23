@@ -2,15 +2,14 @@
 
 @layer base {
 	a {
-		color: var(--color-blue-600);
-		text-decoration: underline;
+		@apply text-blue-500 underline cursor-pointer
 	}
 }
 @layer components {
 	@layer components {
 		.button {
 			@apply inline-flex items-center justify-center gap-2
-            rounded-lg
+            rounded-lg cursor-pointer
             px-4 py-2
             text-sm font-medium
             transition-colors duration-200
@@ -18,7 +17,7 @@
             disabled:opacity-50 disabled:pointer-events-none
             bg-blue-600 text-white
             hover:bg-blue-700
-            focus:ring-blue-500;
+            focus:ring-blue-500
 		}
 	}
 }
