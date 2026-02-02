@@ -1,7 +1,9 @@
 import { signIn } from '@/auth';
 import Image from 'next/image';
+import prisma from '@/lib/prisma';
 
 export default function LogIn() {
+	const user = prisma.user.findMany()
 	return (
 		<div className="w-full h-[calc(100dvh-80px)] bg-black flex items-center justify-center px-4">
 			<div className="w-full max-w-sm rounded-2xl border border-zinc-700 bg-black p-6 shadow-sm">

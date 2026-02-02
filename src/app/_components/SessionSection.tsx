@@ -19,10 +19,11 @@ export default function SessionSectionClient() {
 
 	return (
 		<div className='flex gap-2'>
-			<div className='rounded-full overflow-hidden h-10 w-10 bg-gray-400 text-white'>
-				{session.user?.image ? <Image src={session.user.image} width={40} height={40} alt='' /> : '?'}
-			</div>
-
+			<Link href={`/${session.user.nickname}`}>
+				<div className='rounded-full overflow-hidden h-10 w-10 bg-gray-400 text-white'>
+					{session.user?.image ? <Image src={session.user.image} width={40} height={40} alt='' /> : '?'}
+				</div>
+			</Link>
 			<button
 				className='text-black bg-white py-1.5 px-4 rounded-3xl font-medium hover:bg-black
 				hover:text-white transition-all duration-300 ease-out'
