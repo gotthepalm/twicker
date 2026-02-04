@@ -1,24 +1,31 @@
-import { signIn } from '@/auth';
+import { auth, signIn } from '@/auth';
 import Image from 'next/image';
 
-export default function LogIn() {
+export default async function LogIn() {
+	const session = await auth()
 	return (
 		<div className="w-full h-[calc(100dvh-80px)] bg-black flex items-center justify-center px-4">
 			<div className="w-full max-w-sm rounded-2xl border border-zinc-700 bg-black p-6 shadow-sm">
 				<div className="mb-6 text-center">
 					<h1 className="text-xl font-semibold text-white">Welcome back</h1>
 					<p className="mt-1 text-sm text-zinc-300">Sign in to continue</p>
+					{/*<div>{session?.user.nickname}</div>*/}
 				</div>
 				<div className="flex flex-col gap-3">
 					<form
 						action={async () => {
 							'use server';
-							await signIn('google');
+							if (!session?.user.nickname) {
+								await signIn('google', {redirectTo: '/redirect'})
+							} else {
+								await signIn('google', { redirectTo: '/redirect' });
+							}
 						}}
 					>
 						<button
 							type="submit"
-							className="flex w-full items-center justify-center gap-3 rounded-xl border border-zinc-200 bg-white px-4 py-2.5 text-sm font-medium text-zinc-800 transition hover:bg-zinc-50 active:scale-[0.98]"
+							className="cursor-pointer flex w-full items-center justify-center gap-3 rounded-xl border border-zinc-200
+							 bg-white px-4 py-2.5 text-sm font-medium text-zinc-800 transition"
 						>
 							<Image src="/images/google.png" width={20} height={20} alt="" />
 							Sign in with Google
@@ -27,12 +34,17 @@ export default function LogIn() {
 					<form
 						action={async () => {
 							'use server';
-							await signIn('github');
+							if (!session?.user.nickname) {
+								await signIn('github', {redirectTo: '/registration'})
+							} else {
+								await signIn('github', { redirectTo: '/' });
+							}
 						}}
 					>
 						<button
 							type="submit"
-							className="flex w-full items-center justify-center gap-3 rounded-xl bg-zinc-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-zinc-800 active:scale-[0.98]"
+							className="cursor-pointer flex w-full items-center justify-center gap-3 rounded-xl bg-zinc-900
+							 px-4 py-2.5 text-sm font-medium text-white transition"
 						>
 							<span className="h-5 w-5 bg-white mask-[url(/images/github.png)] mask-no-repeat mask-contain mask-center"></span>
 							Sign in with GitHub

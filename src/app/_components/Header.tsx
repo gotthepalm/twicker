@@ -11,11 +11,11 @@ export default function Header() {
 					<h1 className='text-3xl'>twicker</h1>
 				</Link>
 				<nav className=''>
-					<ul className='flex items-center gap-10 text-sm font-medium'>
+					<ul className='flex items-center gap-10 text-[20px] font-medium'>
 						<li>
 							<Link
 								href='/'
-								className='relative text-[18px] text-white no-underline after:absolute
+								className='relative text-white no-underline after:absolute
 								after:left-1/2 after:-bottom-1 after:h-[2px] after:w-0 after:-translate-x-1/2
 								after:bg-white after:transition-all after:duration-300 after:ease-out
 								hover:after:w-full'
@@ -25,19 +25,19 @@ export default function Header() {
 						</li>
 						<li>
 							<Link
-								href='/posts/post'
-								className='relative text-[18px] text-white no-underline after:absolute
+								href='/registration'
+								className='relative text-white no-underline after:absolute
 								after:left-1/2 after:-bottom-1 after:h-[2px] after:w-0 after:-translate-x-1/2
 								after:bg-white after:transition-all after:duration-300 after:ease-out
 								hover:after:w-full'
 							>
-								Posts
+								Registration
 							</Link>
 						</li>
 						<li>
 							<Link
 								href='/settings'
-								className='relative text-[18px] text-white no-underline after:absolute
+								className='relative text-white no-underline after:absolute
 								after:left-1/2 after:-bottom-1 after:h-[2px] after:w-0 after:-translate-x-1/2
 								after:bg-white after:transition-all after:duration-300 after:ease-out
 								hover:after:w-full'
