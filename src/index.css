@@ -9,15 +9,11 @@
 	@layer components {
 		.button {
 			@apply inline-flex items-center justify-center gap-2
-            rounded-lg cursor-pointer
-            px-4 py-2
-            text-sm font-medium
-            transition-colors duration-200
+            cursor-pointer no-underline
             focus:outline-none
             disabled:opacity-50 disabled:pointer-events-none
-            bg-blue-600 text-white
-            hover:bg-blue-700
-            focus:ring-blue-500
+            text-black bg-white py-1.5 px-4 rounded-3xl font-medium hover:bg-black
+            hover:text-white transition-all duration-300 ease-out
 		}
 	}
 }

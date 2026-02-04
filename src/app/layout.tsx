@@ -1,7 +1,12 @@
-import '../css/index.css';
+import '../index.css';
 import type { Metadata } from 'next';
+import { Roboto } from 'next/font/google'
 import Header from '@/src/app/_components/Header';
 import { Providers } from '@/src/app/_components/Providers';
+
+const roboto = Roboto({
+	weight: ['100', '200', '300', '400', '500', '600', '700','800']
+})
 
 export const metadata: Metadata = {
 	title: 'twicker',
@@ -23,7 +28,7 @@ export default async function RootLayout({
 }>) {
 	return (
 		<html className='' lang='en'>
-			<body className='h-full bg-black text-white text-[18px]'>
+			<body className={`${roboto.className} h-full bg-black text-white text-[18px]`}>
 				<Providers>
 					<Header/>
 					<main className='h-full pt-20'>
