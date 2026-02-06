@@ -4,6 +4,9 @@
 	a {
 		@apply text-blue-500 underline cursor-pointer
 	}
+    input {
+        @apply border border-zinc-700 text-[16px] placeholder:text-[16px] bg-black py-1.5 px-4 rounded-xl
+    }
 }
 @layer components {
 	@layer components {
