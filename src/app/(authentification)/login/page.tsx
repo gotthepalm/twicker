@@ -2,24 +2,18 @@ import { auth, signIn } from '@/auth';
 import Image from 'next/image';
 
 export default async function LogIn() {
-	const session = await auth()
 	return (
 		<div className="w-full h-[calc(100dvh-80px)] bg-black flex items-center justify-center px-4">
 			<div className="w-full max-w-sm rounded-2xl border border-zinc-700 bg-black p-6 shadow-sm">
 				<div className="mb-6 text-center">
 					<h1 className="text-xl font-semibold text-white">Welcome back</h1>
 					<p className="mt-1 text-sm text-zinc-300">Sign in to continue</p>
-					{/*<div>{session?.user.nickname}</div>*/}
 				</div>
 				<div className="flex flex-col gap-3">
 					<form
 						action={async () => {
 							'use server';
-							if (!session?.user.nickname) {
-								await signIn('google', {redirectTo: '/redirect'})
-							} else {
-								await signIn('google', { redirectTo: '/redirect' });
-							}
+							await signIn('google', {redirectTo: '/registration'})
 						}}
 					>
 						<button
@@ -34,11 +28,7 @@ export default async function LogIn() {
 					<form
 						action={async () => {
 							'use server';
-							if (!session?.user.nickname) {
-								await signIn('github', {redirectTo: '/registration'})
-							} else {
-								await signIn('github', { redirectTo: '/' });
-							}
+							await signIn('github', {redirectTo: '/registration'})
 						}}
 					>
 						<button

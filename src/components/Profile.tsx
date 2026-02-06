@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { User } from '@/src/types/user';
 
 export default function Profile({ user }: { user: User }) {
-	if (!user) return null;
 	return (
 		<div className='w-full max-w-3xl mx-auto pb-10 flex flex-col justify-start'>
 			<div className='flex gap-5 items-start'>
