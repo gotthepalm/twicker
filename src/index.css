@@ -1,11 +1,11 @@
 @import 'tailwindcss';
 
 @layer base {
-	a {
-		@apply text-blue-500 underline cursor-pointer
-	}
+	/*a {*/
+	/*	@apply text-blue-500 underline cursor-pointer*/
+	/*}*/
     input {
-        @apply border border-zinc-700 text-[16px] placeholder:text-[16px] bg-black py-1.5 px-4 rounded-xl
+        @apply border border-zinc-700 text-[16px] placeholder:text-[16px] bg-black py-1.5 px-4 rounded-2xl
     }
 }
 @layer components {
@@ -15,8 +15,14 @@
             cursor-pointer no-underline
             focus:outline-none
             disabled:opacity-50 disabled:pointer-events-none
-            text-black bg-white py-1.5 px-4 rounded-3xl font-medium hover:bg-black
-            hover:text-white transition-all duration-300 ease-out
+            text-black bg-white py-1.5 px-4 rounded-2xl font-medium hover:bg-zinc-800
+            hover:text-zinc-300 /*hover:shadow-[inset_0_0_15px_#ffffff]*/ transition-all duration-300 ease-out
 		}
+        .custom-link {
+            @apply text-white after:bg-white relative no-underline after:absolute
+            after:left-1/2 after:-bottom-1 after:h-[2px] after:w-0 after:-translate-x-1/2
+            after:transition-all after:duration-300 after:ease-out
+            hover:after:w-full text-[20px] font-medium
+        }
 	}
 }
