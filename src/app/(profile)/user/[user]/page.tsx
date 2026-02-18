@@ -14,9 +14,12 @@ export default async function User({ params }: { params: Promise<{ user: string 
 			notFound()
 		);
 	}
+	const posts = await prisma.post.findMany({
+		where: {authorId: dbUser.id}
+	})
 	const session = await auth()
-	if (session?.user.id === dbUser.id) {
-		return <AdminProfile user={dbUser}/>
+	if (session?.user?.id === dbUser.id) {
+		return <AdminProfile posts={posts} user={dbUser}/>
 	}
-	return <Profile user={dbUser}/>
+	return <Profile posts={posts} user={dbUser}/>
 }

@@ -3,34 +3,27 @@ import GitHub from '@auth/core/providers/github';
 import Google from '@auth/core/providers/google';
 import { prisma } from "@/lib/prisma"
 import { PrismaAdapter } from '@auth/prisma-adapter';
+import { User } from '@/src/types/user';
+import { Session } from 'next-auth';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
 	adapter: PrismaAdapter(prisma),
 	providers: [GitHub, Google],
 		callbacks: {
 			async session({ session, user }) {
-				// user тут обычно есть (из DB session), но чтобы точно получить СВЕЖИЕ данные —
-				// перечитаем из БД (после prisma.user.update они уже будут новые)
-				const freshUser = await prisma.user.findUnique({
-					where: { id: user.id },
-					select: {
-						id: true,
-						name: true,
-						email: true,
-						image: true,
-						nickname: true
+				const u = user as User & { nickname?: string | null }
+
+				return {
+					...session,
+					user: {
+						// можно не тащить DefaultSession["user"], если тебе не нужно
+						id: u.id,
+						email: u.email ?? null,
+						name: u.name ?? null,
+						image: u.image ?? null,
+						nickname: u.nickname ?? null,
 					},
-				});
-
-				if (freshUser && session.user) {
-					session.user.id = freshUser.id;
-					session.user.name = freshUser.name;
-					session.user.email = freshUser.email;
-					session.user.image = freshUser.image;
-					session.user.nickname = freshUser.nickname ?? undefined
-				}
-
-				return session;
+				} satisfies Session
 			},
 		},
 });

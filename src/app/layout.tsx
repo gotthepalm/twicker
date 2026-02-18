@@ -2,7 +2,7 @@ import '../index.css';
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 import { SessionProvider } from 'next-auth/react';
-import ClientSection from '@/src/app/_components/ClientSection';
+import ClientSection from '@/src/components/ClientSection';
 import Link from 'next/link';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
@@ -35,7 +35,6 @@ export default async function RootLayout({
 		const nickname = formData.get('nickname') as string;
 		redirect(`/user/${nickname}`);
 	}
-	// const session = await auth();
 	return (
 		<html className='' lang='en'>
 			<body className={`${IBMPlexSansJP.className} h-full bg-black text-white text-[18px]`}>
@@ -73,7 +72,6 @@ export default async function RootLayout({
 									<input
 										placeholder='Search user...'
 										type='text'
-										className='border-none bg-transparent pl-3 pr-1 w-40 focus:outline-0 active:bg-black'
 										name='nickname'
 									/>
 									<button
@@ -82,9 +80,6 @@ export default async function RootLayout({
 								mask-center mask-contain bg-zinc-200 cursor-pointer'
 									></button>
 								</form>
-								{/*test section*/}
-								{/*<div>Server: {session?.user.nickname}</div>*/}
-								{/**/}
 								<ClientSection />
 							</div>
 						</div>

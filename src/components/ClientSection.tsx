@@ -24,7 +24,7 @@ export default function ClientSection() {
 	}, []);
 
 	if (status === 'loading') return null;
-	if (!session) {
+	if (!session?.user) {
 		return (
 			<Link href='/login' className='button'>
 				Log In
@@ -34,9 +34,6 @@ export default function ClientSection() {
 
 	return (
 		<div className='flex items-center gap-2 relative'>
-			{/*test section*/}
-			{/*<div>Client:{session.user.nickname}</div>*/}
-			{/**/}
 			<Link href={session.user.nickname ? `/user/${session.user.nickname}` : '/registration'}>
 				<div className='rounded-full flex items-center justify-center overflow-hidden h-10 w-10 bg-gray-400 text-white'>
 					{session.user?.image ? (

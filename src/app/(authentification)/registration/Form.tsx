@@ -9,14 +9,18 @@ export default function Form() {
 	const router = useRouter();
 	const { update } = useSession();
 
-	const [state, action, pending] = useActionState(async (_prev: string | { ok: true; nickname: string } | null, formData: FormData) => {
-		const state = await setNickname(_prev, formData);
-		if (state && typeof state === "object" && state.ok) /*if success*/ {
-			await update();
-			router.replace('/');
-		}
-		return state;
-	}, null);
+	const [state, action, pending] = useActionState(
+		async (_prev: string | { ok: true; nickname: string } | null, formData: FormData) => {
+			const state = await setNickname(_prev, formData);
+			if (state && typeof state === 'object' && state.ok) {
+				/*if success*/
+				await update();
+				router.replace('/');
+			}
+			return state;
+		},
+		null,
+	);
 	return (
 		<form className='flex flex-col gap-1' action={action}>
 			<input
