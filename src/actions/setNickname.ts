@@ -12,11 +12,12 @@ export default async function setNickname(
 	formData: FormData
 ): Promise<string | {ok: true, nickname: string}> {
 	const session = await auth();
+	if (!session?.user) return 'no session'
 	const nickname = String(formData.get("nickname") ?? "");
 	if (!nicknameRegex.test(nickname)) return "invalid_nickname";
 	try {
 		await prisma.user.update({
-			where: { id: session?.user.id },
+			where: { id: session.user.id },
 			data: { nickname },
 		});
 		revalidatePath('/')

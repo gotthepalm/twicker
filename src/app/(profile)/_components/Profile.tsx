@@ -5,7 +5,7 @@ import EmailSymbol from '@/src/components/EmailSymbol';
 import Post from '@/src/components/Post';
 import { PostType } from '@/src/types/post';
 
-export default async function Profile({ user, posts }: { user: User, posts : PostType[] }) {
+export default async function Profile({ user, posts }: { user: User, posts?: PostType[] }) {
 	return (
 		<div className='w-full max-w-3xl mx-auto pb-10 flex flex-col justify-start gap-2'>
 			<div className='flex border border-zinc-700 rounded-2xl py-5 px-10 gap-5 items-start'>
@@ -23,11 +23,13 @@ export default async function Profile({ user, posts }: { user: User, posts : Pos
 					<div className='text-gray-400'>{user.name}</div>
 				</div>
 			</div>
-			<div className='w-full flex flex-col items-center gap-2'>
-				{posts.map((value, index) => {
-					return <Post key={index} author={user} post={value} />;
-				})}
-			</div>
+			{posts ? (
+				<div className='w-full flex flex-col items-center gap-2'>
+					{posts.map((value, index) => {
+						return <Post key={index} author={user} post={value} />;
+					})}
+				</div>
+			) : null}
 		</div>
 	);
 }
