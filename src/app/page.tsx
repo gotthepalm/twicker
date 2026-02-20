@@ -1,7 +1,7 @@
 import prisma from '@/lib/prisma';
 import Post from '@/src/components/Post';
 import { auth } from '@/auth';
-import CreatePost from '@/src/app/CreatePost';
+import CreatePost from '@/src/components/CreatePost';
 
 export default async function Home() {
 	const session = await auth();

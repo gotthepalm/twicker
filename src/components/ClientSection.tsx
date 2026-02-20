@@ -64,9 +64,10 @@ export default function ClientSection() {
 
 					<div className='text-zinc-300 mb-10'>{session.user?.name}</div>
 
-					<button className='button  w-3/4 py-1' onClick={() => signOut()}>
+					<button className='button group w-3/4 py-1' onClick={() => signOut()}>
 						Sign Out
-						<Image src='/images/sign-out.svg' width='20' height='20' alt=''/>
+						<div className='h-5 w-5 mask-[url(/images/sign-out.svg)] mask-center mask-contain mask-no-repeat
+						bg-black group-hover:bg-zinc-300 transition-all duration-300 ease-out'></div>
 					</button>
 				</div>
 			)}

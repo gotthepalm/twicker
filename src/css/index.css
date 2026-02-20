@@ -8,7 +8,7 @@
             focus:outline-none
             disabled:opacity-50 disabled:pointer-events-none
             text-black bg-white py-1.5 px-4 rounded-2xl font-medium hover:bg-zinc-800
-            hover:text-zinc-300 /*hover:shadow-[inset_0_0_15px_#ffffff]*/ transition-all duration-300 ease-out
+            hover:text-zinc-300 transition-all duration-300 ease-out
 		}
         .custom-link {
             @apply text-white after:bg-white relative no-underline after:absolute

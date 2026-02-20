@@ -8,7 +8,13 @@ import { Session } from 'next-auth';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
 	adapter: PrismaAdapter(prisma),
-	providers: [GitHub, Google],
+	providers: [GitHub, Google({
+		authorization: {
+			params: {
+				prompt: "select_account",
+			},
+		},
+	})],
 		callbacks: {
 			async session({ session, user }) {
 				const u = user as User & { nickname?: string | null }

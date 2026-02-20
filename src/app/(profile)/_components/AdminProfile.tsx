@@ -41,7 +41,7 @@ export default function AdminProfile({ user, posts }: { user: User, posts : Post
 	}, null);
 
 	return (
-		<div className='w-full max-w-3xl mx-auto pb-10 flex flex-col justify-start gap-2'>
+		<div className='w-full max-w-3xl mx-auto px-3 flex flex-col justify-start gap-2'>
 			<div className='flex border border-zinc-700 rounded-2xl py-5 px-10 gap-5 items-start'>
 				<div>
 					<Link href={user.nickname ? `/user/${user.nickname}` : '/registration'}>
