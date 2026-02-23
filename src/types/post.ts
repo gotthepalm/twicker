@@ -1,6 +1,7 @@
 export type PostType = {
-	id: string
+	id: number
 	text: string | null
 	images: string[]
 	authorId: string
+	createdAt: Date
 }

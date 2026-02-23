@@ -23,11 +23,12 @@ model User {
   updatedAt DateTime @updatedAt
 }
 model Post {
-  id       String   @id @default(cuid())
-  text     String?
-  images   String[]
-  authorId String
-  author   User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  id        Int      @id @default(autoincrement())
+  text      String?
+  images    String[]
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
 
   @@index([authorId])
 }

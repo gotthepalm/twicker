@@ -25,7 +25,7 @@ export default async function Profile({ user, posts }: { user: User, posts?: Pos
 			</div>
 			{posts ? (
 				<div className='w-full flex flex-col items-center gap-2'>
-					{posts.map((value, index) => {
+					{[...posts].reverse().map((value, index) => {
 						return <Post key={index} author={user} post={value} />;
 					})}
 				</div>

@@ -7,7 +7,7 @@ export default async function Home() {
 	const session = await auth();
 	const posts = await prisma.post.findMany({
 		orderBy: { id: 'desc' },
-		take: 10,
+		take: 30,
 	});
 	return (
 		<div className='h-full text-white'>
@@ -16,14 +16,14 @@ export default async function Home() {
 					<CreatePost author={session.user} />
 				) : null}
 				<div className='w-full flex flex-col items-center gap-2'>
-					{posts.map(async (value, index) => {
+					{posts.map(async (post, index) => {
 						const author = await prisma.user.findUnique({
-							where: {id: value.authorId}
+							where: {id: post.authorId}
 						})
 						if (!author) {
 							return
 						}
-						return <Post key={index} author={author} post={value} />;
+						return <Post key={index} author={author} post={post} />;
 					})}
 				</div>
 			</div>
